@@ -1,0 +1,13 @@
+{
+  "name": "apartman-mili",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Apartmán Mili – nástroje pro screenshoty a testy (web je čistě statický)",
+  "scripts": {
+    "build": "python build.py",
+    "screenshots": "node tools/screenshots.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}

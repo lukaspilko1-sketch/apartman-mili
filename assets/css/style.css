@@ -1,0 +1,393 @@
+/* Apartmán Mili – styly. Tokeny nahoře, zbytek podle sekcí. */
+
+:root {
+  --spruce: #1f3a33;
+  --spruce-deep: #162b25;
+  --pine: #2f5446;
+  --paper: #fbf9f4;
+  --birch: #f1ede3;
+  --ink: #1d2623;
+  --muted: #55625a;
+  --line: #ddd5c4;
+  --copper: #a5552a;
+  --copper-dark: #8a4521;
+  --sand: #d9c7a6;
+
+  --font-head: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --wrap: 1160px;
+  --gutter: clamp(20px, 5vw, 40px);
+  --header-h: 68px;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 12px); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+img { display: block; max-width: 100%; }
+a { color: var(--copper-dark); text-underline-offset: 3px; }
+a:hover { color: var(--copper); }
+h1, h2, h3 { font-family: var(--font-head); font-weight: 500; line-height: 1.15; margin: 0 0 .6em; text-wrap: balance; }
+h2 { font-size: clamp(1.75rem, 3.6vw, 2.6rem); }
+h3 { font-size: 1.25rem; }
+p { margin: 0 0 1em; }
+ul { margin: 0; padding: 0; }
+
+:focus-visible { outline: 3px solid var(--copper); outline-offset: 3px; }
+
+.wrap { width: 100%; max-width: calc(var(--wrap) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
+.muted { color: var(--muted); font-size: .95rem; }
+.plain { list-style: none; margin: 0 0 1.2em; }
+.plain li { padding: .15em 0; }
+
+.skip { position: absolute; left: -999px; top: 8px; background: var(--paper); padding: .6em 1em; z-index: 100; }
+.skip:focus { left: 8px; }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--copper-dark);
+  margin: 0 0 .9em;
+}
+.eyebrow--light { color: var(--sand); }
+
+/* ------------------------------------------------------------ tlačítka */
+.btn {
+  display: inline-flex; align-items: center; gap: .5em;
+  padding: .8rem 1.4rem;
+  border: 1.5px solid transparent;
+  border-radius: 4px;
+  font: 600 1rem/1.2 var(--font-body);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .2s, color .2s, border-color .2s;
+}
+.btn .arrow { display: inline-block; transition: transform .2s; }
+.btn:hover .arrow { transform: translateX(4px); }
+.btn--primary { background: var(--copper); color: #fff; }
+.btn--primary:hover { background: var(--copper-dark); color: #fff; }
+.btn--ghost { border-color: rgba(255,255,255,.7); color: #fff; }
+.btn--ghost:hover { background: rgba(255,255,255,.14); color: #fff; }
+.btn--outline { border-color: var(--spruce); color: var(--spruce); }
+.btn--outline:hover { background: var(--spruce); color: #fff; }
+.btn--small { padding: .55rem 1rem; font-size: .95rem; background: var(--copper); color: #fff; }
+.btn--small:hover { background: var(--copper-dark); color: #fff; }
+.btn--large { padding: 1.05rem 2rem; font-size: 1.1rem; }
+
+/* ------------------------------------------------------------ hlavička */
+.header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(251,249,244,.96);
+  backdrop-filter: saturate(1.2) blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.header__inner {
+  display: flex; align-items: center; gap: 1.5rem;
+  max-width: calc(var(--wrap) + 2 * var(--gutter)); margin-inline: auto;
+  padding: 0 var(--gutter); height: var(--header-h);
+}
+.logo {
+  display: inline-flex; align-items: center; gap: .55rem;
+  font: 500 1.35rem/1 var(--font-head);
+  color: var(--spruce); text-decoration: none; white-space: nowrap;
+}
+.logo:hover { color: var(--spruce); }
+.logo__mark { color: var(--spruce); }
+.logo--light, .logo--light:hover, .logo--light .logo__mark { color: var(--birch); }
+
+.nav { margin-left: auto; }
+.nav ul { list-style: none; display: flex; gap: 1.6rem; }
+.nav a { color: var(--ink); text-decoration: none; font-size: .98rem; padding: .4rem 0; border-bottom: 2px solid transparent; }
+.nav a:hover { color: var(--copper-dark); border-color: var(--copper); }
+
+.header__tools { display: flex; align-items: center; gap: .9rem; }
+.lang { display: flex; gap: .15rem; }
+.lang a {
+  font-size: .8rem; font-weight: 600; letter-spacing: .06em;
+  text-decoration: none; color: var(--muted);
+  padding: .3rem .5rem; border-radius: 3px;
+}
+.lang a:hover { color: var(--spruce); background: var(--birch); }
+.lang a[aria-current="true"] { color: var(--spruce); background: var(--birch); }
+.lang--light a { color: rgba(241,237,227,.75); }
+.lang--light a:hover, .lang--light a[aria-current="true"] { color: #fff; background: rgba(255,255,255,.12); }
+
+.menu-btn {
+  display: none;
+  font: 600 .95rem var(--font-body); color: var(--spruce);
+  background: none; border: 1.5px solid var(--spruce); border-radius: 4px;
+  padding: .45rem .9rem; cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .menu-btn { display: inline-block; }
+  .header__cta { display: none; }
+  .header__inner { gap: .75rem; }
+  .header__tools { margin-left: auto; }
+  .nav {
+    position: absolute; left: 0; right: 0; top: var(--header-h);
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    padding: .5rem var(--gutter) 1.25rem;
+    display: none;
+  }
+  .nav.is-open { display: block; }
+  .nav ul { flex-direction: column; gap: 0; }
+  .nav a { display: block; padding: .85rem 0; font-size: 1.1rem; border-bottom: 1px solid var(--line); }
+}
+
+@media (max-width: 480px) {
+  .header__inner { gap: .5rem; }
+  .header__tools { gap: .4rem; }
+  .logo { font-size: 1.1rem; gap: .4rem; }
+  .logo__mark { width: 24px; height: 24px; }
+  .lang a { padding: .3rem .3rem; font-size: .75rem; }
+  .menu-btn { padding: .4rem .7rem; font-size: .9rem; }
+}
+
+/* ---------------------------------------------------------------- hero */
+.hero {
+  position: relative; isolation: isolate;
+  min-height: clamp(540px, 82vh, 780px);
+  display: flex; align-items: flex-end;
+  background: var(--spruce);
+  color: #fff;
+}
+.hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; z-index: -2; }
+.hero__shade {
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(to top, rgba(15,28,24,.82) 0%, rgba(15,28,24,.45) 45%, rgba(15,28,24,.12) 100%);
+}
+.hero__content { padding-block: clamp(48px, 9vh, 96px); }
+.hero h1 { font-size: clamp(2.4rem, 6vw, 4.4rem); max-width: 16ch; margin-bottom: .4em; }
+.hero__lead { font-size: clamp(1.05rem, 1.8vw, 1.3rem); max-width: 40em; color: rgba(255,255,255,.92); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.6rem; }
+img.is-missing { visibility: hidden; }
+
+/* -------------------------------------------------------------- fakta */
+.facts { background: var(--birch); border-bottom: 1px solid var(--line); }
+.facts__list { list-style: none; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; padding-block: 1.4rem; }
+.facts__list li { display: flex; flex-direction: column; min-width: 7.5rem; }
+.facts__list strong { font: 500 1.45rem/1.2 var(--font-head); color: var(--spruce); }
+.facts__list span { font-size: .88rem; color: var(--muted); }
+
+/* ------------------------------------------------------------- sekce */
+.section { padding-block: clamp(56px, 9vw, 112px); }
+.section--alt { background: var(--birch); }
+.section--dark { background: var(--spruce); color: var(--birch); }
+.section--dark h2, .section--dark h3 { color: #fff; }
+.section__head { max-width: 44rem; margin-bottom: clamp(24px, 4vw, 48px); }
+
+.about { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
+.about__text p { max-width: 38em; }
+.about__side { border-left: 1px solid var(--line); padding-left: clamp(20px, 3vw, 36px); }
+.about__side h3 { margin-top: 0; }
+.about__side h3:not(:first-child) { margin-top: 1.6em; }
+@media (max-width: 820px) {
+  .about { grid-template-columns: 1fr; }
+  .about__side { border-left: 0; border-top: 1px solid var(--line); padding: 1.6rem 0 0; }
+}
+
+/* ------------------------------------------------------------ galerie */
+/* Mozaika podle sloupců: fotky na výšku i na šířku zůstávají v původním poměru stran (bez ořezu). */
+.gallery { list-style: none; columns: 3; column-gap: 12px; }
+.gallery__item { margin: 0 0 12px; break-inside: avoid; }
+.gallery__btn {
+  display: block; width: 100%; padding: 0; border: 0;
+  background: var(--sand); cursor: zoom-in; overflow: hidden; border-radius: 3px;
+}
+.gallery__btn img { width: 100%; height: auto; transition: transform .5s ease; }
+.gallery__btn:hover img { transform: scale(1.03); }
+@media (max-width: 900px) { .gallery { columns: 2; } }
+
+/* ----------------------------------------------------------- vybavení */
+.amen { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 4vw, 56px); }
+.amen__group { border-top: 2px solid var(--spruce); padding-top: 1rem; }
+.amen__group ul { list-style: none; }
+.amen__group li { padding: .4em 0 .4em 1.3em; position: relative; border-bottom: 1px solid var(--line); }
+.amen__group li::before { content: ""; position: absolute; left: 0; top: 1.1em; width: .6em; height: 2px; background: var(--copper); }
+@media (max-width: 820px) { .amen { grid-template-columns: 1fr; } }
+
+/* ------------------------------------------------------------ lokalita */
+.section--dark .section__head p { color: rgba(241,237,227,.85); }
+.loc__photo { margin: 0 0 clamp(28px, 4vw, 48px); }
+.loc__photo img { width: 100%; height: auto; aspect-ratio: 21 / 9; object-fit: cover; object-position: 80% 86%; border-radius: 3px; }
+@media (max-width: 700px) { .loc__photo img { aspect-ratio: 4 / 3; } }
+.loc { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(28px, 4vw, 56px); }
+.loc h3 { font-size: 1.1rem; padding-bottom: .6rem; border-bottom: 1px solid rgba(241,237,227,.35); }
+.dist { margin: 0; }
+.dist > div { display: flex; justify-content: space-between; gap: 1rem; padding: .55em 0; border-bottom: 1px solid rgba(241,237,227,.15); }
+.dist dt { color: rgba(241,237,227,.88); }
+.dist dd { margin: 0; font-weight: 600; white-space: nowrap; color: #fff; }
+.getting { list-style: none; }
+.getting li { padding: .55em 0; border-bottom: 1px solid rgba(241,237,227,.15); }
+.getting strong { display: block; color: #fff; }
+.getting span { color: rgba(241,237,227,.88); font-size: .98rem; }
+.seasons {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 56px);
+  margin-top: clamp(40px, 6vw, 72px); padding-top: clamp(28px, 4vw, 44px);
+  border-top: 1px solid rgba(241,237,227,.35);
+}
+.seasons h3 { margin-bottom: .3em; }
+.seasons p:last-child { max-width: 32em; color: rgba(241,237,227,.9); }
+@media (max-width: 900px) {
+  .loc { grid-template-columns: 1fr; }
+  .seasons { grid-template-columns: 1fr; gap: 1.5rem; }
+  .seasons > div:last-child .eyebrow { display: none; }
+}
+
+/* ------------------------------------------------------------ rezervace */
+.book { background: var(--birch); }
+.book__inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+.book__inner p { max-width: 34em; }
+.todo-note { display: inline-block; padding: .4em .8em; background: #fff3cd; border: 1px dashed #b58900; font-size: .9rem; }
+
+/* -------------------------------------------------------------- kontakt */
+.contact { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
+.contact__list { margin: 1.6rem 0 0; }
+.contact__list > div { display: grid; grid-template-columns: 7rem 1fr; gap: 1rem; padding: .7em 0; border-bottom: 1px solid var(--line); }
+.contact__list dt { color: var(--muted); font-size: .9rem; letter-spacing: .04em; text-transform: uppercase; align-self: center; }
+.contact__list dd { margin: 0; }
+.map { background: var(--birch); border: 1px solid var(--line); padding: clamp(20px, 3vw, 32px); border-radius: 4px; }
+.map h3 { margin-top: 0; }
+.map__links { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1rem 0 0; }
+@media (max-width: 820px) { .contact { grid-template-columns: 1fr; } }
+
+/* -------------------------------------------------------------- patička */
+.footer { background: var(--spruce-deep); color: rgba(241,237,227,.85); padding-block: 40px 28px; }
+.footer a { color: inherit; }
+.footer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+.footer__inner p { margin: 0; font-size: .95rem; }
+.footer__legal { margin: 1.6rem auto 0; padding-top: 1.2rem; border-top: 1px solid rgba(241,237,227,.18); font-size: .85rem; color: rgba(241,237,227,.6); }
+
+/* -------------------------------------------------- sticky CTA (mobil) */
+.sticky-cta { display: none; }
+@media (max-width: 760px) {
+  .sticky-cta {
+    display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    padding: .7rem var(--gutter) calc(.7rem + env(safe-area-inset-bottom));
+    background: rgba(251,249,244,.97); border-top: 1px solid var(--line);
+    transform: translateY(110%); transition: transform .3s ease;
+  }
+  .sticky-cta.is-visible { transform: none; }
+  .sticky-cta .btn { width: 100%; justify-content: center; }
+  body { padding-bottom: 72px; }
+}
+
+/* ------------------------------------------------------------ lightbox */
+.lightbox {
+  border: 0; padding: 0; background: transparent;
+  width: 100vw; height: 100vh; max-width: none; max-height: none;
+  color: #fff;
+}
+.lightbox::backdrop { background: rgba(10,18,15,.94); }
+.lightbox[open] { display: flex; align-items: center; justify-content: center; }
+.lightbox__fig { margin: 0; max-width: 92vw; max-height: 88vh; }
+.lightbox__fig img { max-width: 92vw; max-height: 88vh; object-fit: contain; }
+.lightbox__close, .lightbox__nav {
+  position: absolute; background: rgba(255,255,255,.12); color: #fff; border: 0;
+  width: 48px; height: 48px; border-radius: 50%; font-size: 1.9rem; line-height: 1; cursor: pointer;
+}
+.lightbox__close:hover, .lightbox__nav:hover { background: rgba(255,255,255,.26); }
+.lightbox__close { top: 16px; right: 16px; }
+.lightbox__nav { top: 50%; transform: translateY(-50%); }
+.lightbox__nav--prev { left: 16px; }
+.lightbox__nav--next { right: 16px; }
+
+/* ---------------------------------------------------- odkrývání při scrollu */
+.js .reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
+.js .reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .btn .arrow, .gallery__btn img, .sticky-cta { transition: none; }
+}
+
+/* ======================================================================
+   MOBIL: větší písmo, velké plochy pro klepnutí, přepínač jazyků v menu.
+   (Na mobilu nejsou potřeba drobné prvky; všechno klepatelné min. ~48 px.)
+   ====================================================================== */
+.langnav { display: none; }
+
+@media (max-width: 640px) {
+  :root { --header-h: 64px; }
+  body { font-size: 1.25rem; line-height: 1.65; }
+
+  /* hlavička: jen logo + Menu */
+  .header__tools .lang { display: none; }
+  .logo { font-size: 1.3rem; gap: .5rem; padding: .7rem 0; }
+  .logo__mark { width: 30px; height: 30px; }
+  .menu-btn { min-height: 46px; padding: .5rem 1.1rem; font-size: 1.05rem; }
+
+  /* menu přes celou šířku, velké řádky + jazyky */
+  .nav { max-height: calc(100vh - var(--header-h)); overflow-y: auto; padding-bottom: 1.5rem; }
+  .nav a { font-size: 1.3rem; padding: 1.05rem 0; }
+  .langnav { display: flex; gap: .6rem; margin-top: 1.25rem; }
+  .langnav a {
+    flex: 1; text-align: center; font-size: 1.05rem; font-weight: 600; padding: .9rem .5rem;
+    border: 1.5px solid var(--line); border-radius: 4px; color: var(--spruce); text-decoration: none;
+  }
+  .langnav a[aria-current="true"] { background: var(--spruce); border-color: var(--spruce); color: #fff; }
+
+  /* texty a nadpisy */
+  .eyebrow { font-size: .9rem; letter-spacing: .12em; }
+  h2 { font-size: clamp(2.1rem, 9vw, 2.5rem); }
+  h3, .loc h3 { font-size: 1.45rem; }
+  .muted { font-size: 1.1rem; }
+
+  /* hero */
+  .hero { min-height: clamp(560px, 86vh, 720px); }
+  .hero h1 { font-size: clamp(2.5rem, 11vw, 3.1rem); max-width: 12ch; }
+  .hero__lead { font-size: 1.3rem; line-height: 1.5; }
+  .hero__actions { flex-direction: column; align-items: stretch; gap: .75rem; }
+  .hero__actions .btn { justify-content: center; }
+
+  /* tlačítka */
+  .btn { min-height: 54px; padding: 1rem 1.5rem; font-size: 1.15rem; }
+  .btn--large { width: 100%; justify-content: center; }
+  .book__inner { flex-direction: column; align-items: stretch; }
+
+  /* pruh faktů: 2 sloupce, poslední přes celou šířku */
+  .facts__list { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem 1rem; padding-block: 1.75rem; }
+  .facts__list li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .facts__list li { min-width: 0; }
+  .facts__list strong { font-size: 1.75rem; }
+  .facts__list span { font-size: 1.05rem; }
+
+  /* seznamy a tabulky */
+  .plain li { padding: .3em 0; }
+  .amen__group li { padding: .65em 0 .65em 1.5em; font-size: 1.2rem; }
+  .amen__group li::before { top: 1.35em; width: .7em; }
+  .dist > div { padding: .8em 0; font-size: 1.2rem; }
+  .getting li { padding: .8em 0; }
+  .getting span { font-size: 1.15rem; }
+  .seasons p { font-size: 1.2rem; }
+
+  /* kontakt */
+  .contact__list > div { grid-template-columns: 1fr; gap: .15rem; padding: .9em 0; }
+  .contact__list dt { font-size: .9rem; }
+  .contact__list dd { font-size: 1.25rem; }
+  .map__links { flex-direction: column; }
+  .map__links .btn { justify-content: center; width: 100%; }
+
+  /* patička */
+  .footer { font-size: 1.1rem; }
+  .footer .lang a { padding: .65rem .8rem; font-size: .95rem; }
+  .footer__legal { font-size: .95rem; }
+
+  /* pevné tlačítko dole + lightbox */
+  .sticky-cta .btn { min-height: 56px; font-size: 1.15rem; }
+  body { padding-bottom: 84px; }
+  .lightbox__close, .lightbox__nav { width: 54px; height: 54px; font-size: 2.1rem; }
+}
